@@ -1711,35 +1711,40 @@ tagmon(const Arg *arg)
 	sendmon(selmon->sel, dirtomon(arg->i));
 }
 
+unsigned int rest = gappx;
+
+
 void
 tile(Monitor *m)
 {
 	unsigned int i, n, h, mw, my, ty, bw;
 	Client *c;
-
 	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
 	if (n == 0)
 		return;
 
-	if (n == 1)
+	 if (n == 1){
 		bw = 0;
-	else
+		m->gappx = 0;}
+	 else{
 		bw = borderpx;
-	if (n > m->nmaster)
-		mw = m->nmaster ? m->ww * m->mfact : 0;
-	else
-		mw = m->ww - m->gappx;
-	for (i = 0, my = ty = m->gappx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
-		if (i < m->nmaster) {
-			h = (m->wh - my) / (MIN(n, m->nmaster) - i) - m->gappx;
-			// ongolong resize(c, m->wx + m->gappx, m->wy + my, mw - (2*c->bw) - m->gappx, h - (2*c->bw), 0);
-			resize(c, m->wx           , m->wy + my, mw - 2*bw - m->gappx,h - 2*bw, bw, 0);
-			my += HEIGHT(c) + m->gappx;
-		} else {
-			h = (m->wh - ty) / (n - i) - m->gappx;
-			//resize(c, m->wx + mw + m->gappx, m->wy + ty, m->ww - mw - (2*c->bw) - 2*m->gappx, h - (2*c->bw), 0);
-			  resize(c, m->wx + mw + m->gappx, m->wy + ty, m->ww - mw -  2*bw -     2*m->gappx, h -  2*bw, bw, 0);
-			ty += HEIGHT(c) + m->gappx;
+		m->gappx = 0;}
+	if (n > m->nmaster){
+		m->gappx = rest;
+		mw = m->nmaster ? m->ww * m->mfact : 0;}
+	  else
+	    mw = m->ww - m->gappx;
+	 for (i = 0, my = ty = m->gappx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+      if (i < m->nmaster) {
+	    h = (m->wh - my) / (MIN(n, m->nmaster) - i) - m->gappx;
+        // ongolong resize(c, m->wx + m->gappx, m->wy + my, mw - (2*c->bw) - m->gappx, h - (2*c->bw), 0);
+        resize(c, m->wx + m->gappx, m->wy + my, mw - 2*bw - m->gappx,h - 2*bw, bw, 0);
+        my += HEIGHT(c) + m->gappx;
+     } else {
+        h = (m->wh - ty) / (n - i) - m->gappx;
+        //resize(c, m->wx + mw + m->gappx, m->wy + ty, m->ww - mw - (2*c->bw) - 2*m->gappx, h - (2*c->bw), 0);
+        resize(c, m->wx + mw + m->gappx, m->wy + ty, m->ww - mw -  2*bw -     2*m->gappx, h -  2*bw, bw, 0);
+        ty += HEIGHT(c) + m->gappx;
 		}
 }
 
