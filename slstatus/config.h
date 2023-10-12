@@ -72,7 +72,8 @@ static const struct arg args[] = {
 	{ run_command, "«[:%s]",  "amixer sget Master,0 | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
 	{ wifi_essid, "«[:%s",  "wlan0" 	    },
 	{ run_command, "(%sms)", "ping -c 1 gnu.org | grep -oP 'time=\\K.*'[0-9]" },
-	{ run_command, "%s:]", "ip a | grep 'noprefixroute w' &> /dev/null || ethernet=$(ip a | grep -Eo 'noprefixroute e.*') && echo ${ethernet#noprefixroute}" },
+	//{ run_command, "%s:]", "ip a | grep 'noprefixroute w' &> /dev/null || ethernet=$(ip a | grep -Eo 'noprefixroute e.*') && echo ${ethernet#noprefixroute}" },
+	{ run_command, "%s:]", "ethernet=$(ip a | grep -Eo 'noprefixroute e.*') && echo ${ethernet#noprefixroute}" },
 	{ battery_perc, "«[:%s%%]", "BAT1",   	    },
 	{ datetime, "«[%s] ",          "%a/%b/%d %I:%M"  },
 };
