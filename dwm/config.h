@@ -26,7 +26,7 @@ static const char *colors[][3]      = {
 
 /* tagging */
 //tag names (upper left)
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", ""};
+static const char *tags[] = { "", "", "", "", "", "", "", "", "", ""};
 //static const char *tags[] = { "ɪ", "ɪɪ", "ɪɪɪ", "ɪᴠ", "ᴠ", "ᴠɪ", "ᴠɪɪ", "ᴠɪɪɪ", "ɪx", "x" };
 
 static const Rule rules[] = {
@@ -35,11 +35,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class       instance   title       tags mask     iscentered   isfloating   monitor */
-	{ "feh",	   NULL,      NULL,       0,       	    1,		     1,			  -1 },
- 	{ "alscratch", NULL,      NULL,       0,            1,		     1,			  -1 },
-	{ "mpv",       NULL,      NULL,       0,            1,		     1,			  -1 },
-	{ "fileman",   NULL,      NULL,       0,            1,           1,			  -1 },
-	{ "MyPaint",   NULL,      NULL,       0,            1,           1,			  -1 },
+	{ "Qalculate-gtk",	   NULL,      NULL,       0,       	    1,		     1,			  -1 },
+	{ "feh",	  		   NULL,      NULL,       0,       	    1,		     1,			  -1 },
+ 	{ "alscratch", 		   NULL,      NULL,       0,            1,		     1,			  -1 },
+	{ "mpv",       		   NULL,      NULL,       0,            1,		     1,			  -1 },
+	{ "fileman",   		   NULL,      NULL,       0,            1,           1,			  -1 },
+	{ "MyPaint",   		   NULL,      NULL,       0,            1,           1,			  -1 },
 };
 
 /* layout(s) */
@@ -67,17 +68,17 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-c", "-l", "30", 							  NULL };
-static const char *monitor[]  = { "alacritty", "-e", "/usr/bin/./htop",						  NULL };
-static const char *lockscr[]  = { "i3lock-fancy",  											  NULL };
-static const char *browser[]  = { "librewolf",    							    			  NULL };
-static const char *fileman[]  = { "alacritty", "--class=fileman", "--title=lf", "-e", "lf",   NULL };
-static const char *spotify[]  = { "spotify-launcher", 	    								  NULL };
-static const char *termcmd[]  = { "alacritty",  		    								  NULL };
-static const char *termpop[]  = { "alacritty", "--class=alscratch",							  NULL };
-static const char *upvol[]   = { "amixer", "-q", "set", "Master", "5%+", "unmute", 			  NULL };
-static const char *downvol[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", 			  NULL };
-static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", 			  	  NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-c", "-l", "30", 							  						  NULL };
+static const char *monitor[]  = { "alacritty", "-e", "/usr/bin/./htop",						  						  NULL };
+static const char *lockscr[]  = { "i3lock-fancy",  											  						  NULL };
+static const char *browser[]  = { "librewolf",    							    			  						  NULL };
+static const char *fileman[]  = { "alacritty", "--class=fileman", "--title=lf", "-e", "lf-ueberzug", "/home/lumi/",   NULL };
+static const char *spotify[]  = { "spotify-launcher", 	    								  						  NULL };
+static const char *termcmd[]  = { "alacritty",  		    								  						  NULL };
+static const char *termpop[]  = { "alacritty", "--class=alscratch",							  						  NULL };
+static const char *upvol[]   = { "amixer", "-q", "set", "Master", "5%+", "unmute", 			  						  NULL };
+static const char *downvol[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", 			  					  	  NULL };
+static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", 			  	  						  NULL };
 //wacom commands xsetwacom --set "$(($(xsetwacom --list devices | grep -Eo -m 1 -h "[0-9]{1,4}")))" MapToOutput "eDP-1"
 //static const char *wacoms1[] = { "xsetwacom", "--set", "'$(($(xsetwacom --list devices | grep -Eo -m 1 -h "[0-9]{1,4}")))'", "MapToOutput", "'eDP-1'",  NULL };
 //static const char *wacoms2[] = { "xsetwacom", "--set", "\"$(($(xsetwacom --list devices | grep -Eo -m 1 -h \"[0-9]{1,4}\")))\"", "MapToOutput", "\"HDMI-1\"",	  NULL };
