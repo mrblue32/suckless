@@ -1,24 +1,25 @@
 --- dmenu.c
 +++ dmenu.c
-@@ -684,9 +684,11 @@ setup(void)
- 	swa.override_redirect = True;
- 	swa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
- 	swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask;
--	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, 0,
-+	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, border_width,
- 	                    CopyFromParent, CopyFromParent, CopyFromParent,
- 	                    CWOverrideRedirect | CWBackPixel | CWEventMask, &swa);
-+	if (border_width)
-+		XSetWindowBorder(dpy, win, scheme[SchemeSel][ColBg].pixel);
- 	XSetClassHint(dpy, win, &ch);
- 
- 
-@@ -757,6 +759,8 @@ main(int argc, char *argv[])
- 			colors[SchemeSel][ColFg] = argv[++i];
- 		else if (!strcmp(argv[i], "-w"))   /* embedding window id */
- 			embed = argv[++i];
-+		else if (!strcmp(argv[i], "-bw"))
-+			border_width = atoi(argv[++i]); /* border width */
- 		else
- 			usage();
+@@ -478,12 +469,17 @@ insert:
+ 		}
+ 		break;
+ 	case XK_Tab:
+-		if (!sel)
+-			return;
+-		strncpy(text, sel->text, sizeof text - 1);
++		if (!matches) break; /* cannot complete no matches */
++		strncpy(text, matches->text, sizeof text - 1);
+ 		text[sizeof text - 1] = '\0';
+-		cursor = strlen(text);
+-		match();
++		len = cursor = strlen(text); /* length of longest common prefix */
++		for (item = matches; item && item->text; item = item->right) {
++			cursor = 0;
++			while (cursor < len && text[cursor] == item->text[cursor])
++				cursor++;
++			len = cursor;
++		}
++		memset(text + len, '\0', strlen(text) - len);
+ 		break;
+ 	}
  
