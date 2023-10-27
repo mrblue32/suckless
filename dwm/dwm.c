@@ -1722,11 +1722,13 @@ tile(Monitor *m)
 		return;
 
 	 if (n == 1){
-		bw = 0;
-		m->gappx = 0;}
+		bw = borderpx;
+		//m->gappx = 0;
+		}
 	 else{
 		bw = borderpx;
-		m->gappx = gappx;}
+		//m->gappx = gappx;
+		}
 	if (n > m->nmaster){
 		mw = m->nmaster ? m->ww * m->mfact : 0;}
 	  else

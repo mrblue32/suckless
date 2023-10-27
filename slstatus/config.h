@@ -63,17 +63,30 @@ static const char unknown_str[] = "-";
  */
 static const struct arg args[] = {
 	/* function format          argument */
+	//Sensors
+	{ temp,		 	" [TMP:%sc°]", "/sys/class/thermal/thermal_zone1/temp"						   		},
+	{ cpu_perc, 	"«[CPU:%s%%]", NULL	       													   		},
+	{ ram_perc,	    "«[RAM:%s%%]", NULL	       													   		},
+	{ run_command,  "«[SND:%s]",   "amixer sget Master,0 | grep -Eo '[0-9][0-9][0-9]?%'" 		   		},
+	{ battery_perc, "«[BAT:%s%%]", "BAT1",   	    											   		},
+	//Network
+	{ run_command,  "«[%s|",  	   "ip a | grep -Eo 'w[a-z0-9]*$' || ip a | grep -Eo 'e[a-z0-9]*[0-9]$'"},
+	{ wifi_essid, 	"%s",  	  	   "wlan0"    														    },
+	{ run_command,  "›%sms]", 	   "ping -c 1 gnu.org | grep -oP 'time=\\K.*'[0-9]" 					},
+	//Time
+	{ datetime, 	"«[%s]",  	   "%I:%M" 		 													    },
+
 	//{ datetime, "%s",           "%F %T" },
 	//{ wifi_perc, "W: (%3s%% on ", "wlp8s0" },
     //{ netspeed_rx, "%sB/s  ", "enp0s3" },
-	{ temp,		 " [:%sc°]", "/sys/class/thermal/thermal_zone1/temp"},
-	{ cpu_perc, "«[:%s%%]", NULL	        },
-	{ ram_perc, "«[:%s%%]", NULL	        },
+	//{ temp,		 " [:%sc°]", "/sys/class/thermal/thermal_zone1/temp"},
+	//{ cpu_perc, "«[:%s%%]", NULL	        },
+	//{ ram_perc, "«[:%s%%]", NULL	        },
 	//{ run_command, "«[:%s]",  "amixer sget Master,0 | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
-	{ run_command, "«[:%s]", "amixer sget Master,0 | grep -Eo '[0-9][0-9][0-9]?%'" },
-	{ battery_perc, "«[:%s%%]", "BAT1",   	    },
-	{ run_command, "«[%s|", "ip a | grep -Eo 'w[a-z0-9]*$' || ip a | grep -Eo 'e[a-z0-9]*[0-9]$'" },
-	{ wifi_essid, "%s",  "wlan0" 	    },
-	{ run_command, "›%sms]", "ping -c 1 gnu.org | grep -oP 'time=\\K.*'[0-9]" },
-	{ datetime, "«[%s] ",          "%a/%b/%d %I:%M"  },
+	//{ run_command, "«[:%s]", "amixer sget Master,0 | grep -Eo '[0-9][0-9][0-9]?%'" },
+	//{ battery_perc, "«[:%s%%]", "BAT1",   	    },
+	//{ run_command, "«[%s|", "ip a | grep -Eo 'w[a-z0-9]*$' || ip a | grep -Eo 'e[a-z0-9]*[0-9]$'" },
+	//{ wifi_essid, "%s",  "wlan0" 	    },
+	//{ run_command, "›%sms]", "ping -c 1 gnu.org | grep -oP 'time=\\K.*'[0-9]" },
+	//{ datetime, "«[%s] ",          "%a/%d %I:%M"  },
 };
