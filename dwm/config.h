@@ -8,20 +8,16 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=9", "fontawesome:size=9" };
 static const char dmenufont[]       = "monospace:size=10";
-//background color
-static const char col_gray1[]       = "#202020";
-//inactive window border color
-static const char col_gray2[]       = "#000000";
-//font color
-static const char col_gray3[]       = "#ffffff";
-//current tag and current window font color
-static const char col_gray4[]       = "#000000";
-//Top bar second color (blue) and active window border color
-static const char col_cyan[]        = "#f59542";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+static char normbgcolor[]           = "#222222";
+static char normbordercolor[]       = "#444444";
+static char normfgcolor[]           = "#bbbbbb";
+static char selfgcolor[]            = "#eeeeee";
+static char selbordercolor[]        = "#005577";
+static char selbgcolor[]            = "#005577";
+static char *colors[][3] = {
+       /*               fg           bg           border   */
+       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 /* tagging */
@@ -69,7 +65,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-c", "-l", "30", 							  						  NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-c", "-l", "30", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor,	NULL };
 static const char *monitor[]  = { "alacritty", "-e", "/usr/bin/./htop",						  						  NULL };
 static const char *lockscr[]  = { "i3lock-fancy",  											  						  NULL };
 static const char *browser[]  = { "librewolf",    							    			  						  NULL };
@@ -87,7 +83,7 @@ static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", 			 
 //static const char *wacoms4[] = { "xsetwacom",  NULL };
 
 #include "shiftview.c"
-static char *endx[] = { "/bin/sh", "-c", "endx", "externalpipe", NULL };
+//static char *endx[] = { "/bin/sh", "-c", "endx", "externalpipe", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_w,      spawn,          {.v = browser } },
@@ -125,9 +121,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,              		    XK_n,      shiftview,  	   { .i = +1 } },
 	{ MODKEY,              		    XK_b,      shiftview,      { .i = -1 } },
-    { MODKEY,                       XK_F8,     spawn,          {.v = upvol   } },
-    { MODKEY,                       XK_F7,     spawn,          {.v = downvol } },
-    { MODKEY,                       XK_F5,     spawn,          {.v = mutevol } },
+        { MODKEY,                       XK_F8,     spawn,          {.v = upvol   } },
+        { MODKEY,                       XK_F7,     spawn,          {.v = downvol } },
+        { MODKEY,                       XK_F5,     spawn,          {.v = mutevol } },
+	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
