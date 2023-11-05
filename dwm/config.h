@@ -75,7 +75,7 @@ static const char *termcmd[]  = { "alacritty",  		    								  						  NULL };
 static const char *termpop[]  = { "alacritty", "--class=alscratch",							  						  NULL };
 static const char *upvol[]   = { "amixer", "-q", "set", "Master", "5%+", "unmute", 			  						  NULL };
 static const char *downvol[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", 			  					  	  NULL };
-static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", 			  	  						  NULL };
+//static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", 			  	  						  NULL };
 //wacom commands xsetwacom --set "$(($(xsetwacom --list devices | grep -Eo -m 1 -h "[0-9]{1,4}")))" MapToOutput "eDP-1"
 //static const char *wacoms1[] = { "xsetwacom", "--set", "'$(($(xsetwacom --list devices | grep -Eo -m 1 -h "[0-9]{1,4}")))'", "MapToOutput", "'eDP-1'",  NULL };
 //static const char *wacoms2[] = { "xsetwacom", "--set", "\"$(($(xsetwacom --list devices | grep -Eo -m 1 -h \"[0-9]{1,4}\")))\"", "MapToOutput", "\"HDMI-1\"",	  NULL };
@@ -123,8 +123,8 @@ static Key keys[] = {
 	{ MODKEY,              		    XK_b,      shiftview,      { .i = -1 } },
         { MODKEY,                       XK_F8,     spawn,          {.v = upvol   } },
         { MODKEY,                       XK_F7,     spawn,          {.v = downvol } },
-        { MODKEY,                       XK_F5,     spawn,          {.v = mutevol } },
-	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
+//        { MODKEY,                       XK_F5,     spawn,          {.v = mutevol } },
+	{ MODKEY|ControlMask,           XK_F5,     xrdb,           {.v = NULL } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
