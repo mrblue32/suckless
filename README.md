@@ -2,11 +2,11 @@ I had to tweak smartborders a bit, because it kept failing... to make it work, g
 
     1790: void tile(Monitor *m)
 
-now uncomment:
+and uncomment:
 
-    1801: //m->gappx = 0 > m->gappx = 0
+    1801: //m->gappx = 0
 
-    1805: //m->gappx = gappx > m->gappx = gappx
+    1805: //m->gappx = gappx
 
 recompile and see if your window has no borders when "n = 1", and has borders when "n > 1"!
 
