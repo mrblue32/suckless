@@ -8,7 +8,7 @@ now uncomment:
 
     1805: //m->gappx = gappx > m->gappx = gappx
 
-recompile and see if you window has no borders when "n = 1", and has borders when "n > 1"!
+recompile and see if your window has no borders when "n = 1", and has borders when "n > 1"!
 
 patches i've added:
 
