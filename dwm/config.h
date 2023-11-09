@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel size of windows */
-static const unsigned int gappx     = 5;        /* gaps size between windows */
+static const unsigned int gappx     = 35;        /* gaps size between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
@@ -22,7 +22,7 @@ static char *colors[][3] = {
 
 /* tagging */
 //tag names (upper left)
-				static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 //static const char *tags[] = { "", "", "", "󰘦", "", "", "", "", "", ""};
 //static const char *tags[] = { "ɪ", "ɪɪ", "ɪɪɪ", "ɪᴠ", "ᴠ", "ᴠɪ", "ᴠɪɪ", "ᴠɪɪɪ", "ɪx", "x" };
 
@@ -69,6 +69,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-c", "-l", "30", "-m", dmenumon,
 static const char *monitor[]  = { "alacritty", "-e", "/usr/bin/./htop",						  						  NULL };
 static const char *lockscr[]  = { "i3lock-fancy",  											  						  NULL };
 static const char *browser[]  = { "librewolf",    							    			  						  NULL };
+static const char *musicpl[]  = { "alacritty", "--class=musicpl", "--title=ncmpcpp", "-e", "ncmpcpp",		      NULL };
 static const char *fileman[]  = { "alacritty", "--class=fileman", "--title=lf", "-e", "lf-ueberzug", "/home/lumi/",   NULL };
 static const char *spotify[]  = { "spotify-launcher", 	    								  						  NULL };
 static const char *termcmd[]  = { "alacritty",  		    								  						  NULL };
@@ -91,6 +92,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_h, 	   spawn,          {.v = monitor } },
 	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termpop } },
 	{ MODKEY,	                    XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY, 	                XK_p, 	   spawn,          {.v = musicpl } },
 	{ MODKEY|ControlMask,           XK_l, 	   spawn,          {.v = fileman } },
 	{ MODKEY|ControlMask,           XK_u, 	   spawn,          {.v = spotify } },
  	{ MODKEY,	                    XK_F12,    spawn,          {.v = lockscr } },
