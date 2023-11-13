@@ -67,9 +67,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-c", "-l", "30", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor,	NULL };
 static const char *monitor[]  = { "alacritty", "-e", "/usr/bin/./htop",						  						  NULL };
-static const char *lockscr[]  = { "i3lock-fancy",  											  						  NULL };
+static const char *lockscr[]  = { "slock",       											  						  NULL };
 static const char *browser[]  = { "librewolf",    							    			  						  NULL };
-static const char *musicpl[]  = { "alacritty", "--class=musicpl", "--title=ncmpcpp", "-e", "ncmpcpp",		      NULL };
+static const char *musicpl[]  = { "alacritty", "--class=musicpl", "--title=ncmpcpp", "-e", "ncmpcpp",	    	      NULL };
 static const char *fileman[]  = { "alacritty", "--class=fileman", "--title=lf", "-e", "lf-ueberzug", "/home/lumi/",   NULL };
 static const char *spotify[]  = { "spotify-launcher", 	    								  						  NULL };
 static const char *termcmd[]  = { "alacritty",  		    								  						  NULL };
@@ -96,7 +96,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_l, 	   spawn,          {.v = fileman } },
 	{ MODKEY|ControlMask,           XK_u, 	   spawn,          {.v = spotify } },
  	{ MODKEY,	                    XK_F12,    spawn,          {.v = lockscr } },
-	{ MODKEY,                       XK_t,      togglebar,      {0} }, 
+	{ MODKEY,                       XK_t,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },

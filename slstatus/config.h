@@ -67,7 +67,7 @@ static const struct arg args[] = {
 	{ temp,		 	" [TMP:%sc°]", "/sys/class/thermal/thermal_zone1/temp"						   		},
 	{ cpu_perc, 	"«[CPU:%s%%]", NULL	       													   		},
 	{ ram_perc,	    "«[RAM:%s%%]", NULL	       													   		},
-	{ run_command,  "«[SND:%s]",   "amixer sget Master,0 | grep -Eo '[0-9][0-9][0-9]?%'" 		   		},
+	{ run_command,  "«[SND:%s]",   "amixer sget Master,0 | grep -Eo '[0-9]*%'" 		   		},
 	{ battery_perc, "«[BAT:%s%%]", "BAT1",   	    											   		},
 	//Network
 	{ run_command,  "«[%s|",  	   "ip a | grep -Eo 'w[a-z0-9]*$' || ip a | grep -Eo 'e[a-z0-9]*[0-9]$'"},
