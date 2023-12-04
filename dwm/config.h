@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel size of windows */
-static const unsigned int gappx     = 35;        /* gaps size between windows */
+static const unsigned int gappx     = 12;        /* gaps size between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
@@ -67,11 +67,12 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-c", "-l", "30", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor,	NULL };
 static const char *monitor[]  = { "alacritty", "-e", "/usr/bin/./htop",						  						  NULL };
+static const char *screens[]  = { "scrot", "-s",											  						  NULL };
 static const char *lockscr[]  = { "slock",       											  						  NULL };
 static const char *browser[]  = { "librewolf",    							    			  						  NULL };
 static const char *musicpl[]  = { "alacritty", "--class=musicpl", "--title=ncmpcpp", "-e", "ncmpcpp",	    	      NULL };
 static const char *fileman[]  = { "alacritty", "--class=fileman", "--title=lf", "-e", "lf-ueberzug", "/home/lumi/",   NULL };
-static const char *spotify[]  = { "spotify-launcher", 	    								  						  NULL };
+static const char *spotify[]  = { "spotify", 	    								  						  		  NULL };
 static const char *termcmd[]  = { "alacritty",  		    								  						  NULL };
 static const char *termpop[]  = { "alacritty", "--class=alscratch",							  						  NULL };
 static const char *upvol[]   = { "amixer", "-q", "set", "Master", "5%+", "unmute", 			  						  NULL };
@@ -96,6 +97,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_l, 	   spawn,          {.v = fileman } },
 	{ MODKEY|ControlMask,           XK_u, 	   spawn,          {.v = spotify } },
  	{ MODKEY,	                    XK_F12,    spawn,          {.v = lockscr } },
+ 	{ MODKEY,	                    XK_F11,    spawn,          {.v = screens } },
 	{ MODKEY,                       XK_t,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
