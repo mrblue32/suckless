@@ -72,7 +72,7 @@ static const struct arg args[] = {
 	//Network
 	{ run_command,  "«[%s|",  	   "ip a | grep -Eo 'w[a-z0-9]*$' || ip a | grep -Eo 'e[a-z0-9]*[0-9]$'"},
 	{ wifi_essid, 	"%s",  	  	   "wlan0"    														    },
-	{ run_command,  "›%sms]", 	   "ping -c 1 gnu.org | grep -oP 'time=\\K.*'[0-9]" 					},
+	{ run_command,  "›%s]", 	   "ping -c 1 gnu.org | grep -Eo 'e=.*[0-9]\\Wms' | grep -Eo [0-9].* " 					},
 	//Time
 	{ datetime, 	"«[%s]",  	   "%I:%M" 		 													    },
 
